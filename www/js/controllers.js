@@ -1,40 +1,24 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['kinvey'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  // Form data for the login modal
-  $scope.loginData = {};
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $kinvey, $state) {
+        $scope.logout = function(){
+            var user = $kinvey.getActiveUser();
+            if(null !== user) {
+                var promise = $kinvey.User.logout();
+                console.log("user logged out")
+               promise.then(function(response){
+                   $state.go('login',{},{location:'replace'})
+               });
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+            }
+        }
+    })
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  },
+.controller('PlaylistsCtrl', function($scope, $kinvey, $state ) {
+//check if we can see this
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
+$scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
@@ -46,3 +30,59 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
+    .controller('loginCtrl', function($scope, $stateParams, $kinvey, $state, $location) {
+        var promise = $kinvey.User.me();
+        promise.then(
+            function(response){
+                $state.go('app.playlists');
+            }
+        )
+
+        $scope.doLogin = function(data){
+            console.log('login with user ' + data.name);
+            console.log('and pwd ' + data.password);
+            var promise = $kinvey.User.login({
+               username : data.name,
+                password : data.password
+            });
+            promise.then(function(response){
+                console.log('user found ' + response);
+                $state.go('app.playlists',{},{location:false});
+                //$location.url('/app/playlists',"replace");
+                }, function(error){
+                $scope.errors = true;
+                $scope.errorText = error.description;
+                console.log("oh oh: " + error.description);
+            })
+        }
+        $scope.doRegister = function(login){
+            console.log("creating user with username " + login.name + "and pwd " + login.password);
+            var promise = $kinvey.User.signup({
+                username : login.name,
+                password : login.password,
+                email : login.email
+            });
+            console.log(promise);
+            promise.then(
+                function(response){
+                    console.log(response);
+                    $state.go('app.playlists',{},{location:'replace'});
+            }, function(error){
+
+                console.log('ERROR' + error.description);
+            })
+            /*promise.then(function(User){
+                console.log("user created");
+            }, function(error){
+                console.log("couldnt create user: " +error.response);
+            });*/
+        };
+        $scope.register = function(){
+            $state.go('register')
+        }
+        $scope.login = function(){
+            $state.go('login')
+        }
+
+
+    })

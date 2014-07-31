@@ -1,0 +1,39 @@
+<ion-view title="Log in">
+  <ion-header-bar>
+    <h1 class="title">Register</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="login()">login</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+          <form ng-submit="doRegister(data)">
+          <div class="list">
+              <label class="item item-input">
+                  <span class="input-label">Username</span>
+                  <input type="text" ng-model="data.name" name="uName" required>
+                  <div ng-show="form.uEmail.$dirty && form.uEmail.$invalid">Invalid:
+                      <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
+                      <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+                  </div>
+              </label>
+              <label class="item item-input">
+                  <span class="input-label">Password</span>
+                  <input type="password" ng-model="data.password" required>
+              </label>
+              <label class="item item-input">
+                  <span class="input-label">Password (again)</span>
+                  <input type="password" ng-model="data.password2" required>
+              </label>
+              <label class="item item-input">
+                  <span class="input-label">e-mail</span>
+                  <input type="email" ng-model="data.email" required>
+              </label>
+              <label class="item">
+                  <button class="button button-block button-positive" type="submit">Register</button>
+
+              </label>
+          </div>
+      </form>
+  </ion-content>
+</ion-view>
+

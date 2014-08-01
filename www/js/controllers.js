@@ -184,6 +184,7 @@ $scope.addSpotting = function(spotting){
             promise.then(
                 function(response){
                     console.log("user updated");
+                    $state.go('app.playlists');
                 }, function(error){
                     console.log("update failed: " + error.description);
                 }

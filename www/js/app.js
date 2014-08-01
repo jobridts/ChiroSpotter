@@ -74,11 +74,11 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
       controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-      url: "/search",
+    .state('app.todo', {
+      url: "/todo",
       views: {
         'menuContent' :{
-          templateUrl: "templates/search.html"
+          templateUrl: "templates/todo.html"
         }
       }
     })

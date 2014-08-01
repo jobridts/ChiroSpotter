@@ -76,6 +76,7 @@ $scope.addSpotting = function(spotting){
     promise.then(
         function(response){
             console.log("created spotting " + response);
+            $state.go('app.playlists');
         }, function(error){
             console.log("something went wrong: " + error.description)
         }

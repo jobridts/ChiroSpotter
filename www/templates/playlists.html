@@ -20,7 +20,8 @@
             <img src="../img/unkown.jpg">
             <span class="badge badge-assertive">{{spotting.points}} pt</span>
             <h2>{{spotting.groep.naam}}</h2>
-            <p>Spotted by <strong>{{spotting.spotter.first_name}} {{spotting.spotter.last_name}}</strong></p>
+            <p>Gespot door <strong>{{spotting.spotter.first_name}} {{spotting.spotter.last_name}}</strong>
+                <span ng-show="spotting.activiteit"><br /> tijdens <strong>{{spotting.activiteit}}</strong></span></p>
         </div>
 
           <a class="item item-icon-left positive">
@@ -39,7 +40,7 @@
               <img src="../img/avatar.jpeg">
               <span class="badge badge-assertive">15 points</span>
               <h2>Chiro Schelle</h2>
-              <p>Spotted by <strong>Jo Bridts</strong></p>
+              <p>Gespot door <strong>Jo Bridts</strong><br /> tijdens <strong>Bivak 2014</strong></p>
           </div>
 
           <div class="item item-image padding-left padding-right">

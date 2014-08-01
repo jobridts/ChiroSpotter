@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5593c977-eab8-44a9-ad2b-f20f831cad42" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Users\Jo\Documents\GitHub\ChiroSpotter\config.xml" afterPath="$PROJECT_DIR$/www/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/addspotting.html" afterPath="$PROJECT_DIR$/www/templates/addspotting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/playlists.html" afterPath="$PROJECT_DIR$/www/templates/playlists.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ChiroSPotter.iws" />
@@ -39,7 +40,7 @@
       <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="17" selection-start="711" selection-end="711" vertical-scroll-proportion="-17.0" vertical-offset="0" max-vertical-offset="3366">
+            <state line="78" column="39" selection-start="2731" selection-end="2731" vertical-scroll-proportion="-30.6" vertical-offset="561" max-vertical-offset="3383">
               <folding />
             </state>
           </provider>
@@ -63,19 +64,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="5" selection-start="26" selection-end="26" vertical-scroll-proportion="0.037988827" vertical-offset="0" max-vertical-offset="895">
+            <state line="3" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playlists.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="playlists.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/templates/playlists.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="29" selection-start="616" selection-end="616" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="1054">
+            <state line="42" column="18" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.82163405" vertical-offset="0" max-vertical-offset="1071">
               <folding />
             </state>
           </provider>
@@ -84,7 +85,7 @@
       <file leaf-file-name="addspotting.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/templates/addspotting.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="41" selection-start="2798" selection-end="2798" vertical-scroll-proportion="-17.73077" vertical-offset="695" max-vertical-offset="1632">
+            <state line="42" column="51" selection-start="1667" selection-end="1667" vertical-scroll-proportion="-0.7307692" vertical-offset="695" max-vertical-offset="1700">
               <folding />
             </state>
           </provider>
@@ -143,14 +144,14 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/templates/register.html" />
         <option value="$PROJECT_DIR$/www/templates/menu.html" />
-        <option value="$PROJECT_DIR$/www/templates/addspotting.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/www/templates/playlists.html" />
-        <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/ionic.project" />
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/www/config.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/www/js/controllers.js" />
+        <option value="$PROJECT_DIR$/www/templates/addspotting.html" />
+        <option value="$PROJECT_DIR$/www/templates/playlists.html" />
       </list>
     </option>
   </component>
@@ -396,13 +397,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/addspotting.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="41" selection-start="2798" selection-end="2798" vertical-scroll-proportion="-17.73077" vertical-offset="695" max-vertical-offset="1632">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="86" column="23" selection-start="2888" selection-end="2888" vertical-scroll-proportion="-4.88" vertical-offset="1340" max-vertical-offset="2533">
@@ -410,23 +404,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/playlists.html">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="29" selection-start="616" selection-end="616" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="1054">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="17" selection-start="711" selection-end="711" vertical-scroll-proportion="-17.0" vertical-offset="0" max-vertical-offset="3366">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ionic.project">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="29" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+        <state line="3" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
           <folding />
         </state>
       </provider>
@@ -438,9 +418,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="5" selection-start="26" selection-end="26" vertical-scroll-proportion="0.037988827" vertical-offset="0" max-vertical-offset="895">
+        <state line="78" column="39" selection-start="2731" selection-end="2731" vertical-scroll-proportion="-30.6" vertical-offset="561" max-vertical-offset="3383">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/addspotting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="51" selection-start="1667" selection-end="1667" vertical-scroll-proportion="-0.7307692" vertical-offset="695" max-vertical-offset="1700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ionic.project">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="29" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/playlists.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="18" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.82163405" vertical-offset="0" max-vertical-offset="1071">
           <folding />
         </state>
       </provider>

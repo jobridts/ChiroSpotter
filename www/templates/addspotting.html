@@ -39,7 +39,11 @@
       <div class="list card">
           <div class="item item-divider">Waar zag je ze?</div>
           <label class="item item-input">
-              <span class="input-label">Naam</span>
+              <span class="input-label">Activiteit</span>
+              <input type="text" ng-model="spotting.activiteit"/>
+          </label>
+          <label class="item item-input">
+              <span class="input-label">Plaats</span>
               <input type="text" ng-model="spotting.locatie.naam"/>
           </label>
           <label class="item item-input">
@@ -59,8 +63,8 @@
           <div class="list card">
               <div class="item item-divider">Extra's</div>
               <label class="item item-input">
-                  <span class="input-label">Foto</span>
-                  <input type="text" ng-model="spotting.foto"/>
+
+                  <button class="icon-right ion-camera button button-block" disabled>Neem een foto (werkt nog niet)</button>
               </label>
               <div class="item item-toggle">
                   Lift gegegeven?

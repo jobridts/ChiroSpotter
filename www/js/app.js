@@ -4,10 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.services', 'ui.router'])
+angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.services', 'ui.router', 'starter.directives'])
     .run(['$ionicPlatform', '$kinvey', '$rootScope', '$state',  function ($ionicPlatform, $kinvey, $rootScope, $state) {
 
-        console.log($ionicPlatform);
+       // console.log($ionicPlatform);
 
         $ionicPlatform.ready(function () {
             if (window.StatusBar) {
@@ -18,7 +18,8 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
             // Kinvey initialization starts
             var promise = $kinvey.init({
                 appKey: 'kid_PVqVWVBBJm',
-                appSecret: '4237a05cf29a4190badb959df87ed0d5'
+                appSecret: '4237a05cf29a4190badb959df87ed0d5',
+                sync      : { enable: true }
             });
             $rootScope.count = 1;
             promise.then(function () {
@@ -28,7 +29,7 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
 
                 // setup the stateChange listener
                 $rootScope.$on("$stateChangeStart", function (event, toState /*, toParams, fromState, fromParams*/) {
-                    if (toState.name !== 'signin') {
+                    if (toState.name !== 'login') {
                        determineBehavior($kinvey, $state, $rootScope);
                     }
                 });
@@ -36,7 +37,7 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
             }, function (errorCallback) {
                 // Kinvey initialization finished with error
                 console.log("Kinvey init with error: " + JSON.stringify(errorCallback));
-                determineBehavior($kinvey, $state, $rootScope);
+                    determineBehavior($kinvey, $state, $rootScope);
             });
         });
     }])
@@ -56,6 +57,16 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
           templateUrl: "templates/register.html",
           controller: "loginCtrl"
       })
+      .state('app.settings', {
+          url : "/settings",
+          views: {
+              'menuContent' :{
+                  templateUrl: "templates/settings.html",
+                  controller: "SettingsCtrl"
+              }
+          }
+
+      })
     .state('app', {
       url: "/app",
       abstract: true,
@@ -72,11 +83,12 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
       }
     })
 
-    .state('app.browse', {
-      url: "/browse",
+    .state('app.spotting', {
+      url: "/spotting",
       views: {
         'menuContent' :{
-          templateUrl: "templates/browse.html"
+          templateUrl: "templates/addspotting.html",
+            controller: "PlaylistsCtrl"
         }
       }
     })
@@ -100,7 +112,7 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/app/playlists');
 });
 //inject instances (not Providers) into run blocks
 
@@ -109,15 +121,22 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
 function determineBehavior($kinvey, $state, $rootScope ) {
    if ($rootScope.count < 5){
        $rootScope.count++;
-    var promise = $kinvey.User.me();
-    promise.then(
-        function(response){
-            console.log('found active user');
-            $state.go("app.playlists");
-    }, function(error){
-            console.log(error.description);
+    var user = $kinvey.getActiveUser();
+       if (user !== null){
+                console.log('found active user');
+            if ($state.is('login') || $state.is('register')){
+                $state.go("app.playlists");
+            }
+       }else{
+            if ($state.is('login')){
+                //do nothing
+            }else if ($state.is('register')){
+                //do nothing
+            }else{
+
             $state.go('login');
-    });
+            }
+       };
    }
 
 }

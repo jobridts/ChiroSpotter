@@ -1,0 +1,90 @@
+<ion-view title="New Spotting">
+
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+      <form ng-submit="addSpotting(spotting)">
+      <div class="list card">
+
+          <div class="item item-divider">
+              Wie zag je?
+          </div>
+          <label class="item item-input">
+              <span class="input-label">Groepsnaam</span>
+              <input type="text" ng-model="spotting.groep.naam"/>
+          </label>
+              <label class="item item-input">
+                  <span class="input-label">Gemeente</span>
+                  <input type="text" ng-model="spotting.groep.gemeente"/>
+              </label>
+              <label class="item item-input item-select">
+                  <div class="input-label">
+                      Soort groep
+                  </div>
+                  <select>
+                      <option selected>Chiro</option>
+                      <option >Scouts & Gidsen</option>
+                      <option>FOS Open Souting </option>
+                      <option>KLJ </option>
+                      <option>KSJ - KSA - VKSJ </option>
+                      <option>Jeugd Rode Kruis</option>
+                      <option>JNM </option>
+                      <option>IJD </option>
+                  </select>
+              </label>
+
+
+      </div>
+      <div class="list card">
+          <div class="item item-divider">Waar zag je ze?</div>
+          <label class="item item-input">
+              <span class="input-label">Naam</span>
+              <input type="text" ng-model="spotting.locatie.naam"/>
+          </label>
+          <label class="item item-input">
+              <span class="input-label">Straat en nummer</span>
+              <input type="text" ng-model="spotting.locatie.straat"/>
+          </label>
+          <label class="item item-input">
+              <span class="input-label">Postcode</span>
+              <input type="text" ng-model="spotting.locatie.postcode"/>
+          </label>
+          <label class="item item-input">
+              <span class="input-label">Gemeente</span>
+              <input type="text" ng-model="spotting.locatie.gemeente"/>
+          </label>
+
+      </div>
+          <div class="list card">
+              <div class="item item-divider">Extra's</div>
+              <label class="item item-input">
+                  <span class="input-label">Foto</span>
+                  <input type="text" ng-model="spotting.foto"/>
+              </label>
+              <div class="item item-toggle">
+                  Lift gegegeven?
+                  <label class="toggle">
+                      <input type="checkbox" ng-model="spotting.lift">
+                      <div class="track">
+                          <div class="handle"></div>
+                      </div>
+                  </label>
+              </div>
+              <div class="item item-toggle">
+                  Spel gespeeld?
+                  <label class="toggle">
+                      <input type="checkbox" ng-model="spotting.spel">
+                      <div class="track">
+                          <div class="handle"></div>
+                      </div>
+                  </label>
+              </div>
+
+          </div>
+          <div class="card">
+              <button class="button button-block button-positive" type="submit">Spotting toevoegen</button>
+          </div>
+          </form>
+  </ion-content>
+</ion-view>

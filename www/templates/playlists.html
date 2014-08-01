@@ -1,12 +1,56 @@
-<ion-view title="Playlists">
+<ion-view title="Spottings">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+
   </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    <button ng-click="newSpotting()" class="button button-icon icon ion-plus-round">New</button>
+        </ion-nav-buttons>
+
   <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item>
-    </ion-list>
+
+      <ion-refresher
+              pulling-text="Pull to refresh..."
+              on-refresh="doRefresh()">
+      </ion-refresher>
+      <ion-list></ion-list>
+
+    <div class="list card" ng-repeat="spotting in spottings">
+        <div class="item item-avatar">
+            <img src="../img/unkown.jpg">
+            <span class="badge badge-assertive">{{spotting.points}} pt</span>
+            <h2>{{spotting.groep.naam}}</h2>
+            <p>Spotted by <strong>{{spotting.spotter.first_name}} {{spotting.spotter.last_name}}</strong></p>
+        </div>
+
+          <a class="item item-icon-left positive">
+            <i class="icon ion-location"></i>
+            {{spotting.locatie.naam}}<span ng-show="spotting.locatie.naam && spotting.locatie.straat">, </span>
+              <span ng-show="spotting.locatie.naam && spotting.locatie.gemeente && !spotting.locatie.straat">, </span>
+              {{spotting.locatie.straat}}<span ng-show="spotting.locatie.straat && spotting.locatie.gemeente">, </span>
+              {{spotting.locatie.gemeente}}
+        </a>
+     </div>
+      <div class="list card ">
+
+
+          <div class="item item-avatar has-badge" >
+
+              <img src="../img/avatar.jpeg">
+              <span class="badge badge-assertive">15 points</span>
+              <h2>Chiro Schelle</h2>
+              <p>Spotted by <strong>Jo Bridts</strong></p>
+          </div>
+
+          <div class="item item-image padding-left padding-right">
+              <img  src="../img/spotting.png">
+          </div>
+
+          <a class="item item-icon-left positive">
+              <i class="icon ion-location"></i>
+              Beringen, Vlaams Gewest, België
+          </a>
+
+      </div>
   </ion-content>
 </ion-view>

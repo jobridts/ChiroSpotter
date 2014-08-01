@@ -6,7 +6,12 @@
     </div>
   </ion-header-bar>
   <ion-content>
-          <form ng-submit="doRegister(data)">
+      <div class="msg-block" ng-show="register.$error">
+	<span class="msg-error" ng-show="register.data.password2.$error.pwmatch">
+		Passwords don't match.
+	</span>
+      </div>
+          <form name="register" ng-submit="doRegister(data)" novalidate="novalidate">
           <div class="list">
               <label class="item item-input">
                   <span class="input-label">Username</span>
@@ -22,14 +27,14 @@
               </label>
               <label class="item item-input">
                   <span class="input-label">Password (again)</span>
-                  <input type="password" ng-model="data.password2" required>
+                  <input type="password" ng-model="data.password2" required pw-check="data.password">
               </label>
               <label class="item item-input">
                   <span class="input-label">e-mail</span>
                   <input type="email" ng-model="data.email" required>
               </label>
               <label class="item">
-                  <button class="button button-block button-positive" type="submit">Register</button>
+                  <button class="button button-block button-positive" type="submit" ng-disabled="register.$invalid">Register</button>
 
               </label>
           </div>

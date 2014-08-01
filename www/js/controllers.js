@@ -55,9 +55,12 @@ $scope.spottings = [
 $scope.addSpotting = function(spotting){
     //calculate points
     spotting.points = 5;
-    if(spotting.groep.naam !== null){
+    if(spotting.groep !== undefined){
+        if (spotting.groep.naam !== null){
         console.log("5pts voor naam");
+
         spotting.points += 5;
+        }
     }
     if (spotting.lift === true){
         console.log("10pts voor lift")
@@ -71,8 +74,12 @@ $scope.addSpotting = function(spotting){
     /*if (EIGENGROEP){
         spotting.points = spottings.points / 2;
     }*/
+    if (spotting.spotter.totalpoints === null){
+        spotting.spotter.totalpoints = 0;
+    }
+    spotting.spotter.totalpoints += spotting.points;
 
-    var promise = $kinvey.DataStore.save('spottings', spotting, {exclude: ['spotter'], relations: {locatie: 'locaties', groep : 'groepen', spotter: 'user'}});
+    var promise = $kinvey.DataStore.save('spottings', spotting, {relations: {locatie: 'locaties', groep : 'groepen', spotter: 'user'}});
     promise.then(
         function(response){
             console.log("created spotting " + response);
@@ -191,4 +198,33 @@ $scope.addSpotting = function(spotting){
             )
         }
 
+    })
+    .controller('ScoreCtrl', function($scope, $kinvey, $state ) {
+//check if we can see this
+        getData();
+
+        function getData(){
+
+            var query = new $kinvey.Query();
+            query.limit(50);
+            query.descending('totalpoints');
+            query.exists('first_name');
+            query.exists('last_name');
+            var promise = $kinvey.User.find(query);
+
+
+            promise.then(
+                function(response){
+                    $scope.users = response;
+                    console.info(response);
+                    $scope.$broadcast('scroll.refreshComplete');
+                }, function(error){
+                    console.log("error retreiving spottings: " + error.description)
+                }
+            );
+        }
+
+        $scope.doRefresh = function(){
+            getData();
+        }
     })

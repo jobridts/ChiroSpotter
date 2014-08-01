@@ -19,7 +19,7 @@
         <div class="item item-avatar">
             <img src="../img/unkown.jpg">
             <span class="badge badge-assertive">{{spotting.points}} pt</span>
-            <h2>{{spotting.groep.naam}}</h2>
+            <h2>{{spotting.groep.naam || "Onbekende groep"}}</h2>
             <p>Gespot door <strong>{{spotting.spotter.first_name}} {{spotting.spotter.last_name}}</strong>
                 <span ng-show="spotting.activiteit"><br /> tijdens <strong>{{spotting.activiteit}}</strong></span></p>
         </div>
@@ -37,10 +37,10 @@
 
           <div class="item item-avatar has-badge" >
 
-              <img src="../img/avatar.jpeg">
+              <img src="../img/avatar.jpg">
               <span class="badge badge-assertive">15 points</span>
               <h2>Chiro Schelle</h2>
-              <p>Gespot door <strong>Jo Bridts</strong><br /> tijdens <strong>Bivak 2014</strong></p>
+              <p>Gespot door <strong>Jos Cleymans</strong><br /> tijdens <strong>SpotterTest</strong></p>
           </div>
 
           <div class="item item-image padding-left padding-right">
@@ -49,7 +49,7 @@
 
           <a class="item item-icon-left positive">
               <i class="icon ion-location"></i>
-              Beringen, Vlaams Gewest, België
+              Ergens ten Velde
           </a>
 
       </div>

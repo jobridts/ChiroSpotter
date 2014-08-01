@@ -82,6 +82,15 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
         }
       }
     })
+      .state('app.score', {
+          url: "/score",
+          views: {
+              'menuContent' :{
+                  templateUrl: "templates/score.html",
+                  controller: "ScoreCtrl"
+              }
+          }
+      })
 
     .state('app.spotting', {
       url: "/spotting",

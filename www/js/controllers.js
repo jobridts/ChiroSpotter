@@ -34,7 +34,7 @@ console.info("starting AppCtrl");
 
 function getData(){
     var query = new $kinvey.Query();
-    query.limit(3);
+    query.limit(100);
     query.descending('_id');
 var promise = $kinvey.DataStore.find('spottings',query,{relations:{locatie: 'locaties', groep : 'groepen', spotter: 'user'}});
         promise.then(

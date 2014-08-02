@@ -1,10 +1,11 @@
 angular.module('starter.controllers', ['kinvey'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $kinvey, $state, UserService) {
-
+console.info("starting AppCtrl");
 
 
         $scope.logout = function(){
+            console.info("logout function");
             var user = $kinvey.getActiveUser();
             if(null !== user) {
                 var promise = $kinvey.User.logout();
@@ -18,8 +19,18 @@ angular.module('starter.controllers', ['kinvey'])
     })
 
 .controller('PlaylistsCtrl', function($scope, $kinvey, $state ) {
+        console.info("starting PlaylistsCTRL");
 //check if we can see this
-     getData();
+        var promise = $kinvey.ping();
+        promise.then(
+            function(response){
+                console.log('Kinvey Ping Success. Kinvey Service is alive, version: ' + response.version + ', response: ' + response.kinvey);
+                getData();
+            }, function(error){
+                console.log(error.description)
+            }
+        )
+
 
 function getData(){
     var query = new $kinvey.Query();
@@ -94,15 +105,25 @@ $scope.addSpotting = function(spotting){
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
-    .controller('loginCtrl', function($scope, $stateParams, $kinvey, $state, $location) {
-        var user = $kinvey.getActiveUser();
-        if (user !== null){
+    .controller('loginCtrl', function($scope, $stateParams, $kinvey, $state, $location, $rootScope) {
+        console.info("starting loginCtrl");
+        var promise = $kinvey.ping();
+        promise.then(
+            function(response){
+                console.log("ping login ok");
+                var user = $kinvey.getActiveUser();
+                if (user !== null){
 
-                console.log("found user, redirect");
-                $state.go("app.playlists");
-            }else{
-                console.log("no user found: " );
+                    console.log("found user, redirect");
+                    $state.go("app.playlists");
+                }else{
+                    console.log("no user found: " );
+                }
+            }, function (error){
+                console.log(error.description);
             }
+        )
+
 
 
 
@@ -177,14 +198,25 @@ $scope.addSpotting = function(spotting){
 
     })
     .controller('SettingsCtrl', function($scope, $stateParams,$kinvey,$state) {
-        var user = $kinvey.getActiveUser();
-        if (user !==null){
+        console.info("starting SettingsCTRL");
+        var promise = $kinvey.ping();
+        promise.then(
+            function(response){
+                console.log("ping settings ok");
+                var user = $kinvey.getActiveUser();
+                if (user !==null){
 
-                $scope.user = user;
-        }else{
-                console.log("no user, to login");
-                $state.go('login');
+                    $scope.user = user;
+                }else{
+                    console.log("no user, to login");
+                    $state.go('login');
+                }
+            },function(error){
+                console.log(error.description)
             }
+        )
+
+
 
         $scope.updateUser =function(user){
             var promise = $kinvey.User.update(user);
@@ -200,6 +232,7 @@ $scope.addSpotting = function(spotting){
 
     })
     .controller('ScoreCtrl', function($scope, $kinvey, $state ) {
+        console.info("starting ScoreCtrl");
 //check if we can see this
         getData();
 

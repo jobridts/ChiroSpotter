@@ -2,6 +2,10 @@ node_modules/
 .idea/
 .idea
 
+# dploy
+dploy.yaml
+www/.rev
+
 
 # Windows image file caches
 Thumbs.db

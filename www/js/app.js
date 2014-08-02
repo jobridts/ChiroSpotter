@@ -6,9 +6,33 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.services', 'ui.router', 'starter.directives'])
     .run(['$ionicPlatform', '$kinvey', '$rootScope', '$state',  function ($ionicPlatform, $kinvey, $rootScope, $state) {
+        console.info("starting starter.run");
 
        // console.log($ionicPlatform);
+        var promise = $kinvey.init({
+            appKey: 'kid_PVqVWVBBJm',
+            appSecret: '4237a05cf29a4190badb959df87ed0d5',
+            sync      : { enable: true }
+        });
+        $rootScope.count = 1;
+        promise.then(function () {
+            // Kinvey initialization finished with success
+            console.log("Kinvey init with success");
+            $rootScope.didinit = true;
+            determineBehavior($kinvey, $state, $rootScope);
 
+            // setup the stateChange listener
+            $rootScope.$on("$stateChangeStart", function (event, toState /*, toParams, fromState, fromParams*/) {
+                if (toState.name !== 'login') {
+                    determineBehavior($kinvey, $state, $rootScope);
+                }
+            });
+
+        }, function (errorCallback) {
+            // Kinvey initialization finished with error
+            console.log("Kinvey init with error: " + JSON.stringify(errorCallback));
+            determineBehavior($kinvey, $state, $rootScope);
+        });
         $ionicPlatform.ready(function () {
             if (window.StatusBar) {
                 // org.apache.cordova.statusbar required
@@ -16,29 +40,7 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
             }
 
             // Kinvey initialization starts
-            var promise = $kinvey.init({
-                appKey: 'kid_PVqVWVBBJm',
-                appSecret: '4237a05cf29a4190badb959df87ed0d5',
-                sync      : { enable: true }
-            });
-            $rootScope.count = 1;
-            promise.then(function () {
-                // Kinvey initialization finished with success
-                console.log("Kinvey init with success");
-                determineBehavior($kinvey, $state, $rootScope);
 
-                // setup the stateChange listener
-                $rootScope.$on("$stateChangeStart", function (event, toState /*, toParams, fromState, fromParams*/) {
-                    if (toState.name !== 'login') {
-                       determineBehavior($kinvey, $state, $rootScope);
-                    }
-                });
-
-            }, function (errorCallback) {
-                // Kinvey initialization finished with error
-                console.log("Kinvey init with error: " + JSON.stringify(errorCallback));
-                    determineBehavior($kinvey, $state, $rootScope);
-            });
         });
     }])
 
@@ -121,31 +123,41 @@ angular.module('starter', ['ionic', 'kinvey','starter.controllers', 'starter.ser
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/login');
 });
 //inject instances (not Providers) into run blocks
 
 
 //function selects the desired behavior depending on whether the user is logged or not
 function determineBehavior($kinvey, $state, $rootScope ) {
+    console.info("determing behavior");
    if ($rootScope.count < 5){
        $rootScope.count++;
-    var user = $kinvey.getActiveUser();
-       if (user !== null){
-                console.log('found active user');
-            if ($state.is('login') || $state.is('register')){
-                $state.go("app.playlists");
-            }
-       }else{
-            if ($state.is('login')){
-                //do nothing
-            }else if ($state.is('register')){
-                //do nothing
-            }else{
+    var promise = $kinvey.ping();
+       promise.then(
+           function(response){
+               console.log("ping determine ok");
+               var user = $kinvey.getActiveUser();
+               if (user !== null){
+                   console.log('found active user');
+                   if ($state.is('login') || $state.is('register')){
+                       $state.go("app.playlists");
+                   }
+               }else{
+                   if ($state.is('login')){
+                       //do nothing
+                   }else if ($state.is('register')){
+                       //do nothing
+                   }else{
 
-            $state.go('login');
-            }
-       };
+                       $state.go('login');
+                   }
+               };
+           },function(error){
+               console.log(error.description);
+           }
+       )
+
    }
 
 }

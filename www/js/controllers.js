@@ -206,10 +206,12 @@ $scope.addSpotting = function(spotting){
         function getData(){
 
             var query = new $kinvey.Query();
+            var secondquery = new $kinvey.Query();
             query.limit(50);
             query.descending('totalpoints');
             query.exists('first_name');
-            query.exists('last_name');
+            secondquery.exists('last_name');
+            query.or(secondquery);
             var promise = $kinvey.User.find(query);
 
 
